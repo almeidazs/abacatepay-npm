@@ -173,7 +173,7 @@ export const Routes = {
 		 * GET - https://api.abacatepay.com/v2/products/get
 		 */
 		get({ id, externalId } = {} as Record<'id' | 'externalId', string>) {
-			return `/products/get?${new URLSearchParams({ id, externalId })}`
-		}
+			return `/products/get?${new URLSearchParams({ id, externalId })}`;
+		},
 	},
 } as const;

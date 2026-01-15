@@ -28,7 +28,7 @@ export class REST {
 		/**
 		 * Options to use in all requests
 		 */
-		public readonly options = {} as RESTOptions
+		public readonly options = {} as RESTOptions,
 	) {}
 
 	/**

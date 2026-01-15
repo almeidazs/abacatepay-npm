@@ -11,8 +11,10 @@ import type {
 	PaymentStatus,
 } from '.';
 
-// ALL responses returns an object like this
-type APIResponse<Data> =
+/**
+ * Any response returned by the AbacatePay API
+ */
+export type APIResponse<Data> =
 	| {
 			/**
 			 * The data of the response
@@ -226,46 +228,41 @@ export type RESTGetListBillingsData = APIResponse<APICharge[]>;
 export type RESTGetListCustomersData = APIResponse<APICustomer[]>;
 
 /**
- * https://api.abacatepay.com/v2/coupon/create
+ * https://api.abacatepay.com/v2/coupons/create
  *
- * @reference https://docs.abacatepay.com/pages/coupon/create
+ * @reference https://docs.abacatepay.com/pages/coupons/create
  */
 export interface RESTPostCreateCouponBody {
 	/**
-	 * Coupon data.
+	 * Unique coupon identifier.
+	 *
+	 * @example "DEYVIN_20"
 	 */
-	data: {
-		/**
-		 * Unique coupon identifier.
-		 *
-		 * @example "DEYVIN_20"
-		 */
-		code: string;
-		/**
-		 * Discount amount to be applied.
-		 */
-		discount: number;
-		/**
-		 * Type of discount applied, percentage or fixed.
-		 *
-		 * @see {@link CouponDiscountKind}
-		 */
-		discountKind: CouponDiscountKind;
-		/**
-		 * Coupon description
-		 */
-		notes?: string;
-		/**
-		 * Number of times the coupon can be redeemed. -1 means this coupon can be redeemed without limits.
-		 *
-		 * @default -1
-		 */
-		maxRedeems?: number;
-		/**
-		 * Key value object for coupon metadata.
-		 */
-		metadata?: Record<string, unknown>;
-	};
+	code: string;
+	/**
+	 * Discount amount to be applied.
+	 */
+	discount: number;
+	/**
+	 * Type of discount applied, percentage or fixed.
+	 *
+	 * @see {@link CouponDiscountKind}
+	 */
+	discountKind: CouponDiscountKind;
+	/**
+	 * Coupon description
+	 */
+	notes?: string;
+	/**
+	 * Number of times the coupon can be redeemed. -1 means this coupon can be redeemed without limits.
+	 *
+	 * @default -1
+	 */
+	maxRedeems?: number;
+	/**
+	 * Key value object for coupon metadata.
+	 */
+	metadata?: Record<string, unknown>;
 }
 
 /**
@@ -398,8 +395,84 @@ export type RESTGetStoreDetailsData = APIResponse<APIStore>;
 export type RESTGetListWithdrawsData = APIResponse<APIWithdraw[]>;
 
 /**
- * https://api.abacatepay.com/v2/coupon/list
+ * https://api.abacatepay.com/v2/coupons/list
  *
- * @reference https://docs.abacatepay.com/pages/coupon/list
+ * @reference https://docs.abacatepay.com/pages/coupons/list
  */
+// TODO: Add `pagination` field
 export type RESTGetListCouponsData = APIResponse<APICoupon[]>;
+
+/**
+ * https://api.abacatepay.com/v2/coupons/list
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/list
+ */
+export interface RESTGetListCouponsQueryParams {
+	/**
+	 * Page number
+	 * 
+	 * @default 1
+	 */
+	page?: number;
+	/**
+	 * Number of items per page
+	 */
+	limit?: number;
+}
+
+/**
+ * https://api.abacatepay.com/v2/coupons/get
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/get
+ */
+export interface RESTGetCouponQueryParams {
+	/**
+	 * The ID of the coupon
+	 */
+	id: string;
+}
+
+/**
+ * https://api.abacatepay.com/v2/coupons/get
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/get
+ */
+export type RESTGetCouponData = APIResponse<APICoupon>;
+
+/**
+ * https://api.abacatepay.com/v2/coupons/delete
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/delete
+ */
+export interface RESTDeleteCouponBody {
+	/**
+	 * The ID of the coupon
+	 */
+	id: string;
+}
+
+/**
+ * https://api.abacatepay.com/v2/coupons/delete
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/delete
+ */
+export type RESTDeleteCouponData = APIResponse<APICoupon>;
+
+/**
+ * https://api.abacatepay.com/v2/coupons/toggle
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/toggle
+ */
+export interface RESTPatchToggleCouponStatusBody {
+	/**
+	 * The ID of the coupon
+	 */
+	id: string;
+}
+
+/**
+ * https://api.abacatepay.com/v2/coupons/toggle
+ *
+ * @reference https://docs.abacatepay.com/pages/coupons/toggle
+ */
+export type RESTPatchToggleCouponStatusData = APIResponse<APICoupon>;

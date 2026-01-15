@@ -15,17 +15,19 @@ export interface APICoupon {
 	 */
 	discount: number;
 	/**
+	 * Coupon status.
+	 */
+	status: CouponStatus;
+	/**
 	 * Limit on the number of times the coupon can be used. Use `-1` for unlimited coupons or a specific number to limit usage.
+	 *
+	 * @default 10
 	 */
 	maxRedeems: number;
 	/**
 	 * Counter of how many times the coupon has been used by customers.
 	 */
 	redeemsCount: 0;
-	/**
-	 * Coupon status.
-	 */
-	status: 'ACTIVE' | 'DELETED' | 'DISABLED';
 	/**
 	 * Indicates whether the coupon was created in a development (true) or production (false) environment.
 	 */
@@ -45,7 +47,7 @@ export interface APICoupon {
 	/**
 	 * Object to store additional information about the coupon, such as campaign, category, or other data relevant to your organization.
 	 */
-	metadata?: Record<string, unknown>;
+	metadata?: Record<string, object>;
 }
 
 /**
@@ -54,4 +56,10 @@ export interface APICoupon {
 export enum CouponDiscountKind {
 	Percentage = 'PERCENTAGE',
 	Fixed = 'FIXED',
+}
+
+export enum CouponStatus {
+	Active = 'ACTIVE',
+	Inactive = 'INACTIVE',
+	Expired = 'EXPIRED',
 }
