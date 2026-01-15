@@ -10,6 +10,7 @@ import type {
 	PaymentMethod,
 	PaymentStatus,
 } from '.';
+import type { APIProduct } from './entities/products';
 
 /**
  * Any response returned by the AbacatePay API
@@ -21,6 +22,43 @@ export type APIResponse<Data> =
 			 */
 			data: Data;
 			error: null;
+	  }
+	| {
+			data: null;
+			/**
+			 * Error message returned from the API
+			 */
+			error: string;
+	  };
+
+export type APIResponseWithPagination<Data> =
+	| {
+			/**
+			 * The data of the response
+			 */
+			data: Data;
+			error: null;
+			/**
+			 * Pagination info
+			 */
+			pagination: {
+				/**
+				 * Current page
+				 */
+				page: number;
+				/**
+				 * Number of items per page
+				 */
+				limit: number;
+				/**
+				 * Number of items
+				 */
+				items: number;
+				/**
+				 * Number of pages
+				 */
+				totalPages: number;
+			};
 	  }
 	| {
 			data: null;
@@ -211,7 +249,7 @@ export interface RESTGetCheckQRCodePixStatusData {
 	 * Information about the progress of QRCode Pix.
 	 */
 	status: PaymentStatus;
-};
+}
 
 /**
  * https://api.abacatepay.com/v2/billing/list
@@ -362,7 +400,7 @@ export interface RESTGetMerchantData {
 	 * Store creation date.
 	 */
 	createdAt: string;
-};
+}
 
 /**
  * https://api.abacatepay.com/v2/public-mrr/mrr
@@ -378,7 +416,7 @@ export interface RESTGetMRRData {
 	 * Total active subscriptions. Value 0 indicates that there are no currently active subscriptions.
 	 */
 	totalActiveSubscriptions: number;
-};
+}
 
 /**
  * https://api.abacatepay.com/v2/store/get
@@ -410,7 +448,7 @@ export type RESTGetListCouponsData = APICoupon[];
 export interface RESTGetListCouponsQueryParams {
 	/**
 	 * Page number
-	 * 
+	 *
 	 * @default 1
 	 */
 	page?: number;
@@ -476,3 +514,69 @@ export interface RESTPatchToggleCouponStatusBody {
  * @reference https://docs.abacatepay.com/pages/coupons/toggle
  */
 export type RESTPatchToggleCouponStatusData = APICoupon;
+
+/**
+ * https://api.abacatepay.com/v2/products/create
+ *
+ * @reference https://docs.abacatepay.com/pages/products/create
+ */
+export interface RESTPostCreateProductBody
+	extends Pick<APIProduct, 'externalId' | 'name' | 'price' | 'currency'> {
+	/**
+	 * Description for the product
+	 */
+	description?: string;
+}
+
+/**
+ * https://api.abacatepay.com/v2/products/create
+ *
+ * @reference https://docs.abacatepay.com/pages/products/create
+ */
+export type RESTPostCreateProductData = APIProduct;
+
+/**
+ * https://api.abacatepay.com/v2/products/list
+ *
+ * @reference https://docs.abacatepay.com/pages/products/list
+ */
+export interface RESTGetListProductsQueryParams {
+	/**
+	 * Page number
+	 */
+	page?: number;
+	/**
+	 * Limit of products to return
+	 */
+	limit?: number;
+}
+
+/**
+ * https://api.abacatepay.com/v2/products/list
+ *
+ * @reference https://docs.abacatepay.com/pages/products/list
+ */
+export type RESTGetListProductsData = APIProduct[];
+
+/**
+ * https://api.abacatepay.com/v2/products/get
+ *
+ * @reference https://docs.abacatepay.com/pages/products/get
+ */
+export interface RESTGetProductQueryParams {
+	/**
+	 * The product ID
+	 */
+	id?: string;
+	/**
+	 * External ID of the product
+	 */
+	externalId?: string;
+}
+
+/**
+ * https://api.abacatepay.com/v2/products/get
+ *
+ * @reference https://docs.abacatepay.com/pages/products/get
+ */
+export type RESTGetProductData = APIProduct;
