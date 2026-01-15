@@ -17,6 +17,7 @@
       "version": "0.0.1",
       "devDependencies": {
         "@biomejs/biome": "^2.3.11",
+        "typescript": "^5.0.0",
       },
     },
   },
