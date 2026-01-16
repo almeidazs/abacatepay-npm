@@ -1,10 +1,16 @@
-import { file } from 'bun';
+import { readFile, writeFile } from 'node:fs/promises';
 
-const PACKAGE_JSON_FILE = 'package.json';
+const OUTPUT_FILE = new URL('../types/version.ts', import.meta.url);
+const PACKAGE_JSON_FILE = new URL('../package.json', import.meta.url);
 
-const { version } = await file(PACKAGE_JSON_FILE).json();
+const { version } = JSON.parse(await readFile(PACKAGE_JSON_FILE, 'utf8'));
 
-await Bun.write(
-	'types/version.ts',
-	`// Auto-generated in build (DO NOT edit)\nexport const version = '${version}' as const;\n\n// Current AbacatePay API version - https://docs.abacatepay.com/pages/introduction\nexport const API_VERSION = '1' as const;\n`,
+await writeFile(
+	OUTPUT_FILE,
+	`// AUTO-GENERATED — DO NOT EDIT
+
+export const version = '${version}' as const;
+export const API_VERSION = '2' as const;
+`,
+	'utf8',
 );
