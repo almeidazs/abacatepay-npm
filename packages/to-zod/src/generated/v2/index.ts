@@ -1,15 +1,15 @@
 export * from './entities/checkouts';
 export * from './entities/coupon';
-export * from './entities/customer';
-export * from './entities/enums';
-export * from './entities/metadata';
+export * from './entities/customers';
+export * from './entities/errors';
 export * from './entities/mrr';
 export * from './entities/payouts';
 export * from './entities/products';
-export * from './entities/store';
+export * from './entities/stores';
+export * from './entities/transparents';
 export * from './entities/webhook';
 
-export * from './rest';
+export * from './response';
 
 /**
  * Version information

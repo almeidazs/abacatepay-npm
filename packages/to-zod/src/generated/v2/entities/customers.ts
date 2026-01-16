@@ -18,7 +18,18 @@ export const CreateCustomerSchema = z.object({
 export type CreateCustomer = z.infer<typeof CreateCustomerSchema>;
 
 /**
- * Customer data schema (Response)
+ * List customers query parameters
+ */
+export const ListCustomersQuerySchema = z.object({
+	page: z.coerce.number().int().min(1).default(1),
+	limit: z.coerce.number().int().min(1).max(100).default(20),
+	search: z.string().optional(),
+	email: z.string().email().optional(),
+	taxId: z.string().optional(),
+});
+
+/**
+ * Customer update schema
  */
 export const CustomerSchema = z.object({
 	id: z.string(),

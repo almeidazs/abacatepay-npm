@@ -29,6 +29,16 @@ export const CreateCheckoutSchema = z.object({
 
 export type CreateCheckout = z.infer<typeof CreateCheckoutSchema>;
 
+/**
+ * List checkouts query parameters
+ */
+export const ListCheckoutsQuerySchema = z.object({
+	page: z.coerce.number().int().min(1).default(1),
+	limit: z.coerce.number().int().min(1).max(100).default(20),
+	status: z.array(z.string()).optional(),
+	customerId: z.string().optional(),
+});
+
 const StatusEnum = z.enum([
 	'PENDING',
 	'EXPIRED',
