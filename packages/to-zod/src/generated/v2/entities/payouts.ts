@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { createListResponseSchema, createResponseSchema } from '../response';
 
 export const CreatePayoutSchema = z.object({
 	amount: z.number(),
@@ -7,7 +8,7 @@ export const CreatePayoutSchema = z.object({
 });
 
 export const PayoutNotFoundSchema = z.object({
-	data: z.object().nullable(),
+	data: z.object({}).nullable(),
 	error: z.string(),
 });
 
@@ -15,7 +16,7 @@ export const PayoutSchema = z.object({
 	id: z.string(),
 	status: z.string(),
 	devMode: z.boolean(),
-	receiptUrl: z.url().nullable(),
+	receiptUrl: z.string().url().nullable(),
 	kind: z.string().optional(),
 	amount: z.number(),
 	platformFee: z.number(),
@@ -24,21 +25,9 @@ export const PayoutSchema = z.object({
 	updatedAt: z.coerce.date(),
 });
 
-export const PayoutResponseSchema = z.object({
-	data: PayoutSchema,
-	error: z.null(),
-});
+export const PayoutResponseSchema = createResponseSchema(PayoutSchema);
 
-export const ListPayoutResponseSchema = z.object({
-	data: z.array(PayoutSchema),
-	pagination: z.object({
-		page: z.number(),
-		limit: z.number(),
-		total: z.number(),
-		totalPages: z.number(),
-	}),
-	error: z.null(),
-});
+export const ListPayoutResponseSchema = createListResponseSchema(PayoutSchema);
 
 export type PayoutResponse = z.infer<typeof PayoutResponseSchema>;
 export type ListPayoutResponse = z.infer<typeof ListPayoutResponseSchema>;

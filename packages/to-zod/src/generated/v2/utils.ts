@@ -77,38 +77,6 @@ export const ValidationUtils = {
 		return sum % 10 === 0;
 	},
 
-	/**
-	 * Detect card brand from card number
-	 */
-	detectCardBrand: (cardNumber: string): string | null => {
-		const cleanCard = cardNumber.replace(/\D+/g, '');
-
-		const patterns = [
-			{ brand: 'VISA', pattern: /^4/ },
-			{ brand: 'MASTERCARD', pattern: /^5[1-5]/ },
-			{ brand: 'AMEX', pattern: /^3[47]/ },
-			{
-				brand: 'ELO',
-				pattern:
-					/^(4011|431274|438935|451416|457393|457631|457632|504175|627780|636297|636368|658|659)/,
-			},
-			{ brand: 'HIPERCARD', pattern: /^(606282|637095|637568)/ },
-			{ brand: 'DISCOVER', pattern: /^(6011|65|64[4-9])/ },
-			{ brand: 'JCB', pattern: /^35/ },
-			{ brand: 'DINERS', pattern: /^3(0[0-5]|[68])/ },
-			{ brand: 'UNIONPAY', pattern: /^(62|88)/ },
-		];
-
-		for (const { brand, pattern } of patterns) {
-			if (pattern.test(cleanCard)) return brand;
-		}
-
-		return null;
-	},
-
-	/**
-	 * Validate expiration date
-	 */
 	validateExpirationDate: (month: number, year: number): boolean => {
 		const now = new Date();
 		const currentYear = now.getFullYear();
@@ -121,13 +89,7 @@ export const ValidationUtils = {
 	},
 };
 
-/**
- * Zod refinements for common validations
- */
 export const ZodRefinements = {
-	/**
-	 * CPF refinement
-	 */
 	cpf: z.string().refine(ValidationUtils.validateCPF, {
 		message: 'Invalid CPF number',
 	}),
