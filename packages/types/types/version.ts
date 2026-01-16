@@ -1,5 +1,4 @@
-// Auto-generated in build (DO NOT edit)
-export const version = '0.0.4' as const;
+// AUTO-GENERATED — DO NOT EDIT
 
-// Current AbacatePay API version - https://docs.abacatepay.com/pages/introduction
+export const version = '2.0.0' as const;
 export const API_VERSION = '2' as const;

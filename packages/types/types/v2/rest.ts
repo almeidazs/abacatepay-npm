@@ -122,7 +122,7 @@ export type RESTPostCreateCustomerBody = Pick<APICustomer, 'email'> &
 	>;
 
 /**
- * https://api.abacatepay.com/v2/customer/create
+ * https://api.abacatepay.com/v2/customers/create
  *
  * @reference https://docs.abacatepay.com/pages/client/create
  */
