@@ -118,3 +118,6 @@ Bun.serve({
     },
 });
 ```
+
+<p align="center">Feito com 🥑 pela equipe AbacatePay</br>
+Open source, de verdade.</p>
