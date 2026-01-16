@@ -2,9 +2,9 @@ import type {
 	APICharge,
 	APICoupon,
 	APICustomer,
+	APIPayout,
 	APIQRCodePIX,
 	APIStore,
-	APIWithdraw,
 	CouponDiscountKind,
 	PaymentFrequency,
 	PaymentMethod,
@@ -355,59 +355,62 @@ export interface RESTPostCreateCouponBody {
 export type RESTPostCreateCouponData = APICoupon;
 
 /**
- * https://api.abacatepay.com/v2/withdraw/create
+ * https://api.abacatepay.com/v2/payouts/create
  *
- * @reference https://docs.abacatepay.com/pages/withdraw/create
+ * @reference https://docs.abacatepay.com/pages/payouts/create
  */
-export interface RESTPostCreateNewWithdrawBody {
+export interface RESTPostCreateNewPayoutBody {
 	/**
-	 * Unique identifier of the withdrawal in your system.
+	 * Unique identifier of the payout in your system.
 	 */
 	externalId: string;
 	/**
-	 * Withdrawal method available.
-	 */
-	method: 'PIX';
-	/**
-	 * Withdrawal value in cents (Min 350).
+	 * Payout value in cents (Min 350).
 	 */
 	amount: number;
 	/**
-	 * PIX key data to receive the withdrawal.
-	 */
-	pix: {
-		/**
-		 * PIX key type.
-		 */
-		type: 'CPF' | 'CNPJ' | 'PHONE' | 'EMAIL' | 'RANDOM' | 'BR_CODE';
-		/**
-		 * PIX key value.
-		 */
-		key: string;
-	};
-	/**
-	 * Optional description of the withdrawal.
+	 * Optional payout description.
 	 */
 	description?: string;
 }
 
 /**
- * https://api.abacatepay.com/v2/withdraw/create
+ * https://api.abacatepay.com/v2/payouts/create
  *
- * @reference https://docs.abacatepay.com/pages/withdraw/create
+ * @reference https://docs.abacatepay.com/pages/payouts/create
  */
-export type RESTPostCreateNewWithdrawData = APIWithdraw;
+export type RESTPostCreateNewWPayoutData = APIPayout;
 
 /**
- * https://api.abacatepay.com/v2/withdraw/get
+ * https://api.abacatepay.com/v2/payouts/get
  *
- * @reference https://docs.abacatepay.com/pages/withdraw/get
+ * @reference https://docs.abacatepay.com/pages/payouts/get
  */
-export interface RESTGetSearchWithdrawQueryParams {
+export interface RESTGetSearchPayoutQueryParams {
 	/**
-	 * Unique identifier of the withdrawal in your system.
+	 * Unique payout identifier in your system.
 	 */
 	externalId: string;
+}
+
+/**
+ * https://api.abacatepay.com/v2/payouts/list
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/list
+ */
+export interface RESTGetListPayoutsQueryParams {
+	/**
+	 * Number of the page
+	 *
+	 * @default 1
+	 */
+	page?: number;
+	/**
+	 * Number of items per page
+	 *
+	 * @default 20
+	 */
+	limit?: number;
 }
 
 /**
@@ -502,11 +505,11 @@ export interface RESTGetMRRData {
 export type RESTGetStoreDetailsData = APIStore;
 
 /**
- * https://api.abacatepay.com/v2/withdraw/list
+ * https://api.abacatepay.com/v2/payouts/list
  *
- * @reference https://docs.abacatepay.com/pages/withdraw/list
+ * @reference https://docs.abacatepay.com/pages/payouts/list
  */
-export type RESTGetListWithdrawsData = APIWithdraw[];
+export type RESTGetListPayoutsData = APIPayout[];
 
 /**
  * https://api.abacatepay.com/v2/coupons/list

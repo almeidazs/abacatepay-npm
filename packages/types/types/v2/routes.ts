@@ -1,6 +1,6 @@
 import type {
 	RESTGetCheckQRCodePixStatusQueryParams,
-	RESTGetSearchWithdrawQueryParams,
+	RESTGetSearchPayoutQueryParams,
 	RESTPostSimulatePaymentQueryParams,
 } from './rest';
 
@@ -103,7 +103,7 @@ export const Routes = {
 		/**
 		 * GET - https://api.abacatepay.com/v2/payouts/get
 		 */
-		get({ externalId }: RESTGetSearchWithdrawQueryParams) {
+		get({ externalId }: RESTGetSearchPayoutQueryParams) {
 			return `/payouts/get?externalId=${externalId}` as const;
 		},
 
