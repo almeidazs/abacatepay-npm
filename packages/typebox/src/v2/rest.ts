@@ -615,3 +615,150 @@ export const RESTGetListSubscriptionsQueryParams = t.Object({
  * @reference https://docs.abacatepay.com/pages/subscriptions/list
  */
 export const RESTGetListSubscriptionsData = t.Array(APISubscription);
+
+/**
+ * https://api.abacatepay.com/v2/customers/create
+ *
+ * @reference https://docs.abacatepay.com/pages/client/create
+ */
+export const RESTPostCreateCustomerBody = t.Intersect([
+	t.Pick(APICustomer, ['email']),
+	t.Partial(
+		t.Pick(APICustomer, ['name', 'taxId', 'zipCode', 'cellphone', 'metadata']),
+	),
+]);
+
+/**
+ * https://api.abacatepay.com/v2/customers/create
+ *
+ * @reference https://docs.abacatepay.com/pages/client/create
+ */
+export const RESTPostCreateCustomerData = APICustomer;
+
+/**
+ * https://api.abacatepay.com/v2/customers/list
+ *
+ * @reference https://docs.abacatepay.com/pages/client/list
+ */
+export const RESTGetListCustomersData = t.Array(APICustomer);
+
+/**
+ * https://api.abacatepay.com/v2/customers/list
+ *
+ * @reference https://docs.abacatepay.com/pages/client/list
+ */
+export const RESTGetListCustomersQueryParams = t.Object({
+	page: t.Optional(
+		t.Integer({
+			minimum: 1,
+			default: 1,
+			description: 'Page number.',
+		}),
+	),
+	limit: t.Optional(
+		t.Integer({
+			minimum: 1,
+			description: 'Number of items per page.',
+		}),
+	),
+});
+
+/**
+ * https://api.abacatepay.com/v2/customers/get
+ *
+ * @reference https://docs.abacatepay.com/pages/client/get
+ */
+export const RESTGetCustomerQueryParams = t.Object({
+	id: t.String({
+		description: 'The ID of the customer.',
+	}),
+});
+
+/**
+ * https://api.abacatepay.com/v2/customers/get
+ *
+ * @reference https://docs.abacatepay.com/pages/client/get
+ */
+export const RESTGetCustomerData = t.Omit(APICustomer, ['country', 'zipCode']);
+
+/**
+ * https://api.abacatepay.com/v2/customers/delete
+ *
+ * @reference https://docs.abacatepay.com/pages/client/delete
+ */
+export const RESTDeleteCustomerBody = t.Object({
+	id: t.String({
+		description: 'Unique public identifier of the customer to be deleted.',
+	}),
+});
+
+/**
+ * https://api.abacatepay.com/v2/customers/delete
+ *
+ * @reference https://docs.abacatepay.com/pages/client/delete
+ */
+export const RESTDeleteCustomerData = t.Omit(APICustomer, [
+	'country',
+	'zipCode',
+]);
+
+/**
+ * https://api.abacatepay.com/v2/public-mrr/revenue
+ *
+ * @reference https://docs.abacatepay.com/pages/trustMRR/list
+ */
+export const RESTGetRevenueByPeriodQueryParams = t.Object({
+	startDate: t.Date({
+		description: 'Period start date (YYYY-MM-DD format).',
+	}),
+	endDate: t.Date({
+		description: 'Period end date (YYYY-MM-DD format).',
+	}),
+});
+
+/**
+ * https://api.abacatepay.com/v2/public-mrr/revenue
+ *
+ * @reference https://docs.abacatepay.com/pages/trustMRR/list
+ */
+export const RESTGetRevenueByPeriodData = t.Object({
+	totalRevenue: t.Integer({
+		description: 'Total revenue for the period in cents.',
+	}),
+	totalTransactions: t.Integer({
+		description: 'Total transactions in the period.',
+	}),
+	transactionsPerDay: t.Record(
+		t.String(),
+		t.Object({
+			amount: t.Integer({
+				description: "Total value of the day's transactions in cents.",
+			}),
+			count: t.Integer({
+				description: 'Number of transactions for the day.',
+			}),
+		}),
+		{
+			description:
+				'Object with transactions grouped by day (key is the date in YYYY-MM-DD format).',
+		},
+	),
+});
+
+/**
+ * https://api.abacatepay.com/v2/public-mrr/merchant-info
+ *
+ * @reference https://docs.abacatepay.com/pages/trustMRR/get
+ */
+export const RESTGetMerchantData = t.Object({
+	name: t.String({
+		description: 'Store name.',
+	}),
+	website: t.String({
+		format: 'uri',
+		description: 'Store website.',
+	}),
+	createdAt: t.Date({
+		description: 'Store creation date.',
+	}),
+});
