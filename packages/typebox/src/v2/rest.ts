@@ -2,6 +2,7 @@ import { type TAnySchema, Type as t } from '@sinclair/typebox';
 import { APICheckout, PaymentMethod } from './resources/checkout';
 import { APICoupon, CouponDiscountKind } from './resources/coupon';
 import { APICustomer } from './resources/customer';
+import { APIPayout } from './resources/payout';
 
 /**
  * Any response returned by the AbacatePay API
@@ -298,3 +299,69 @@ export const RESTPatchToggleCouponStatusBody = t.Object({
  * @reference https://docs.abacatepay.com/pages/coupons/toggle
  */
 export const RESTPatchToggleCouponStatusData = APICoupon;
+
+/**
+ * https://api.abacatepay.com/v2/payouts/create
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/create
+ */
+export const RESTPostCreateNewPayoutBody = t.Object({
+	externalId: t.String({
+		description: 'Unique identifier of the payout in your system.',
+	}),
+	amount: t.Integer({
+		minimum: 350,
+		description: 'Payout value in cents (Min 350).',
+	}),
+	description: t.Optional(
+		t.String({
+			description: 'Optional payout description.',
+		}),
+	),
+});
+
+/**
+ * https://api.abacatepay.com/v2/payouts/create
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/create
+ */
+export const RESTPostCreateNewPayoutData = APIPayout;
+
+/**
+ * https://api.abacatepay.com/v2/payouts/get
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/get
+ */
+export const RESTGetSearchPayoutQueryParams = t.Object({
+	externalId: t.String({
+		description: 'Unique payout identifier in your system.',
+	}),
+});
+
+/**
+ * https://api.abacatepay.com/v2/payouts/list
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/list
+ */
+export const RESTGetListPayoutsQueryParams = t.Object({
+	page: t.Optional(
+		t.Integer({
+			minimum: 1,
+			default: 1,
+			description: 'Page number.',
+		}),
+	),
+	limit: t.Optional(
+		t.Integer({
+			minimum: 1,
+			description: 'Number of items per page.',
+		}),
+	),
+});
+
+/**
+ * https://api.abacatepay.com/v2/payouts/list
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/list
+ */
+export const RESTGetListPayoutsData = t.Array(APIPayout);
