@@ -14,6 +14,7 @@ Todos os pacotes vivem em `packages/*` e são publicados como `@abacatepay/<nome
 
 </div>
 
+- [`@abacatepay/sdk`](https://www.npmjs.com/package/@abacatepay/sdk) - Um SDK ergonômico para a integração com a API da AbacatePay.
 - [`@abacatepay/rest`](https://www.npmjs.com/package/@abacatepay/rest) — Client REST completo e tipado para a API da AbacatePay.
 - [`@abacatepay/types`](https://www.npmjs.com/package/@abacatepay/types) - Tipagens e helpers completos da API da AbacatePay (Com versionamento).
 - [`@abacatepay/typebox`](https://www.npmjs.com/package/@abacatepay/typebox) - Schemas oficiais da API AbacatePay em TypeBox, com validação runtime, e suporte a OpenAPI.

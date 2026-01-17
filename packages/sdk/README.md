@@ -1,0 +1,95 @@
+<div align="center">
+
+# AbacatePay SDK
+
+SDK oficial da **AbacatePay** para integrar pagamentos via **PIX** de forma simples, segura e totalmente tipada.
+
+O [`@abacatepay/sdk`](https://www.npmjs.com/package/@abacatepay/sdk) é um **wrapper de alto nível** sobre a API da AbacatePay, focado em **DX**, **TypeScript first** e **boas práticas de segurança**.
+
+<img src="https://res.cloudinary.com/dkok1obj5/image/upload/v1767631413/avo_clhmaf.png" width="100%" alt="AbacatePay Open Source"/>
+
+Você pode ver documentação completa do SDK [aqui](https://docs.abacatepay.com/pages/sdk/node).
+
+## Instalação
+
+Use com o seu *package manager* favorito
+
+</div>
+
+```bash
+bun add @abacatepay/sdk
+# ou
+pnpm add @abacatepay/sdk
+# ou
+npm install @abacatepay/sdk
+```
+
+<div align="center">
+
+## Uso básico
+</div>
+
+```ts
+import { AbacatePay } from '@abacatepay/sdk';
+
+const abacate = AbacatePay({ secret });
+```
+
+<div align="center">
+
+Nunca utilize sua API key diretamente no código.
+**Sempre use variáveis de ambiente**.
+
+### Criando uma cobrança
+
+</div>
+
+```ts
+const TEN_REAIS_IN_CENTS = 1_000;
+
+const checkout = await abacate.checkouts.create({
+    items: [
+        {
+            id: 'item_123',
+            amount: TEN_REAIS_IN_CENTS,
+        },
+    ],
+});
+```
+
+<div align="center">
+
+### Procure por alguns clientes
+
+</div>
+
+```ts
+const customers = await abacate.customers.list({
+    limit: 25,
+});
+```
+
+<div align="center">
+
+## Tratamento de erros
+
+Erros da API são normalizados e previsíveis com base no pacote [`@abacatepay/rest`](https://www.npmjs.com/package/@abacatepay/rest).
+
+</div>
+
+```ts
+try {
+    await abacate.subscriptions.subscribe({ ... });
+} catch (error) {
+    if (error instanceof HTTPError) {
+        console.error(`An HTTP ocurred in route ${error.route} (Status ${error.status})`);
+    }
+}
+```
+
+<div align="center">
+
+Feito com 🥑 pela equipe AbacatePay</br>
+Open source, de verdade.
+
+</div>
