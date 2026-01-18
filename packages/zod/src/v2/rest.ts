@@ -1,4 +1,4 @@
-import { z, type ZodTypeAny } from 'zod';
+import { type ZodTypeAny, z } from 'zod';
 import {
 	APICheckout,
 	APICoupon,
@@ -311,7 +311,11 @@ export const RESTPostCreateNewPayoutBody = z.object({
 	externalId: z
 		.string()
 		.describe('Unique identifier of the payout in your system.'),
-	amount: z.number().int().min(350).describe('Payout value in cents (Min 350).'),
+	amount: z
+		.number()
+		.int()
+		.min(350)
+		.describe('Payout value in cents (Min 350).'),
 	description: z.string().describe('Optional payout description.').optional(),
 });
 
@@ -336,9 +340,7 @@ export type RESTPostCreateNewPayoutData = z.infer<
  * @reference https://docs.abacatepay.com/pages/payouts/get
  */
 export const RESTGetSearchPayoutQueryParams = z.object({
-	externalId: z
-		.string()
-		.describe('Unique payout identifier in your system.'),
+	externalId: z.string().describe('Unique payout identifier in your system.'),
 });
 
 export type RESTGetSearchPayoutQueryParams = z.infer<
@@ -627,7 +629,12 @@ export type RESTPostCreateSubscriptionData = z.infer<
  */
 export const RESTGetListSubscriptionsQueryParams = z.object({
 	cursor: z.string().describe('Cursor for the pagination.').optional(),
-	limit: z.number().int().default(20).describe('Number of items per page.').optional(),
+	limit: z
+		.number()
+		.int()
+		.default(20)
+		.describe('Number of items per page.')
+		.optional(),
 });
 
 export type RESTGetListSubscriptionsQueryParams = z.infer<
@@ -791,10 +798,7 @@ export const RESTGetRevenueByPeriodData = z.object({
 					.number()
 					.int()
 					.describe("Total value of the day's transactions in cents."),
-				count: z
-					.number()
-					.int()
-					.describe('Number of transactions for the day.'),
+				count: z.number().int().describe('Number of transactions for the day.'),
 			}),
 		)
 		.describe(

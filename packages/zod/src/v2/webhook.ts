@@ -1,4 +1,4 @@
-import { type ZodAny, z } from 'zod';
+import { type ZodTypeAny, z } from 'zod';
 import { StringEnum } from '../utils';
 import { APIPayout, PaymentMethod } from '.';
 
@@ -14,7 +14,7 @@ export type WebhookEventType = z.infer<typeof WebhookEventType>;
 
 export const BaseWebhookEvent = <
 	Type extends z.infer<typeof WebhookEventType>,
-	Schema extends z.infer<ZodAny>,
+	Schema extends ZodTypeAny,
 >(
 	type: Type,
 	schema: Schema,

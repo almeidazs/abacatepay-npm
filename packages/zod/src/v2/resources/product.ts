@@ -25,9 +25,7 @@ export const APIProduct = z.object({
 		),
 	createdAt: z.coerce.date().describe('Product creation date.'),
 	updatedAt: z.coerce.date().describe('Product update date.'),
-	description: z
-		.union([z.null(), z.string()])
-		.describe('Product description.'),
+	description: z.union([z.null(), z.string()]).describe('Product description.'),
 });
 
 export type APIProduct = z.infer<typeof APIProduct>;
