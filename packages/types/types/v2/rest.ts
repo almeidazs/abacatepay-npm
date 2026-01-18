@@ -442,6 +442,13 @@ export interface RESTGetSearchPayoutQueryParams {
 }
 
 /**
+ * https://api.abacatepay.com/v2/payouts/get
+ *
+ * @reference https://docs.abacatepay.com/pages/payouts/get
+ */
+export type RESTGetSearchPayoutData = APIPayout;
+
+/**
  * https://api.abacatepay.com/v2/payouts/list
  *
  * @reference https://docs.abacatepay.com/pages/payouts/list
