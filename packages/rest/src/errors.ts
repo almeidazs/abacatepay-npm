@@ -10,7 +10,7 @@ export class AbacatePayError extends Error {
 }
 
 /**
- * Represents a HTTP error (Timeout, Network etc).
+ * Represents any HTTP error.
  */
 export class HTTPError extends Error {
 	public constructor(
@@ -34,5 +34,25 @@ export class HTTPError extends Error {
 		super(message);
 
 		this.name = `HTTPError(${route})`;
+	}
+}
+
+/**
+ * Represents a timeout error.
+ */
+export class TimeoutError extends Error {
+	public constructor(
+		/**
+		 * The content of the error message.
+		 */
+		public message: string,
+		/**
+		 * The timeout used in the request.
+		 */
+		public timeout: number,
+	) {
+		super(message);
+
+		this.name = 'TimeoutError';
 	}
 }

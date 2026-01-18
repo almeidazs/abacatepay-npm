@@ -1,4 +1,4 @@
-import { AbacatePayError, HTTPError } from './errors';
+import { AbacatePayError, HTTPError, TimeoutError } from './errors';
 import type {
 	MakeRequestOptions,
 	MakeRequestOptionsWithoutMethod,
@@ -102,9 +102,9 @@ export class REST {
 
 			if (isTimeoutError)
 				// TODO: Add retryable timeout
-				// AbacatePayError will be moved to TimeoutError later
-				throw new AbacatePayError(
+				throw new TimeoutError(
 					`Your request timed out (Waited for ${timeout}ms)`,
+					timeout,
 				);
 
 			throw new HTTPError(`${err}`, route, 0, '');
