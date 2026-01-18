@@ -1,6 +1,6 @@
 {
 	"name": "@abacatepay/sdk",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"type": "module",
 	"sideEffects": false,
 	"license": "Apache-2.0",
@@ -47,7 +47,7 @@
 	},
 	"description": "An ergonomic SDK for integration with AbacatePay",
 	"dependencies": {
-		"@abacatepay/rest": "workspace:*",
-		"@abacatepay/types": "workspace:*"
+		"@abacatepay/rest": "^0.0.1",
+		"@abacatepay/types": "^2.0.1"
 	}
 }
