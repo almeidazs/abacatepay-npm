@@ -33,6 +33,6 @@ export class HTTPError extends Error {
 	) {
 		super(message);
 
-		this.name = `AbacatePayError(${route})`;
+		this.name = `HTTPError(${route})`;
 	}
 }
