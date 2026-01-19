@@ -27,7 +27,7 @@ export interface APICoupon {
 	/**
 	 * Counter of how many times the coupon has been used by customers.
 	 */
-	redeemsCount: 0;
+	redeemsCount: number;
 	/**
 	 * Indicates whether the coupon was created in a development (true) or production (false) environment.
 	 */
