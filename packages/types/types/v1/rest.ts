@@ -104,7 +104,6 @@ export interface RESTPostCreateNewChargeBody {
 	 */
 	customerId?: string;
 	/**
-	 * /**
 	 * Your customer's data to create it.
 	 * The customer object is not mandatory, but when entering any `customer` information, all `name`, `cellphone`, `email` and `taxId` fields are mandatory.
 	 */
