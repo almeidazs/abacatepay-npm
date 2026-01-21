@@ -1,6 +1,6 @@
 {
 	"name": "@abacatepay/fastify",
-	"version": "0.0.2",
+	"version": "1.0.0",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/almeidazs/ecosystem"
@@ -46,6 +46,7 @@
 	"type": "module",
 	"types": "./dist/index.d.ts",
 	"peerDependencies": {
+		"fastify": "^5.7.1",
 		"hono": "^4.11.4"
 	},
 	"dependencies": {
