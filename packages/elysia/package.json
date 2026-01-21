@@ -1,9 +1,19 @@
 {
 	"name": "@abacatepay/elysia",
 	"version": "0.0.1",
-	"type": "module",
-	"sideEffects": false,
-	"license": "Apache-2.0",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/almeidazs/ecosystem"
+	},
+	"main": "./dist/index.js",
+	"devDependencies": {
+		"@biomejs/biome": "^2.3.11",
+		"typescript": "^5.0.0"
+	},
+	"peerDependencies": {
+		"@sinclair/typebox": "^0.34.47",
+		"elysia": "^1.4.22"
+	},
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
@@ -11,25 +21,14 @@
 			"default": "./dist/index.js"
 		}
 	},
-	"main": "./dist/index.js",
-	"types": "./dist/index.d.ts",
-	"files": [
-		"dist"
-	],
-	"scripts": {
-		"test": "bun test",
-		"build": "rm -rf dist && bun run scripts/version.ts && bun build src/index.ts --outdir dist --target node && bun run types",
-		"types": "bunx tsc --emitDeclarationOnly",
-		"prepublishOnly": "bun run build"
-	},
+	"description": "Checkouts and Webhooks made simple with AbacatePay and Elysia.",
 	"engines": {
 		"node": ">=18",
 		"bun": ">=1.0.0"
 	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/almeidazs/ecosystem"
-	},
+	"files": [
+		"dist"
+	],
 	"keywords": [
 		"abacatepay",
 		"payments",
@@ -37,20 +36,21 @@
 		"api",
 		"webhooks"
 	],
+	"license": "Apache-2.0",
 	"publishConfig": {
 		"access": "public"
 	},
-	"devDependencies": {
-		"@biomejs/biome": "^2.3.11",
-		"typescript": "^5.0.0"
+	"scripts": {
+		"test": "bun test",
+		"build": "rm -rf dist && bun run scripts/version.ts && bun build src/index.ts --outdir dist --target node && bun run types",
+		"types": "bunx tsc --emitDeclarationOnly",
+		"prepublishOnly": "bun run build"
 	},
+	"sideEffects": false,
+	"type": "module",
+	"types": "./dist/index.d.ts",
 	"dependencies": {
-		"@abacatepay/typebox": "workspace:*",
-		"@abacatepay/types": "workspace:*"
-	},
-	"description": "Checkouts and Webhooks made simple with AbacatePay and Elysia.",
-	"peerDependencies": {
-		"@sinclair/typebox": "^0.34.47",
-		"elysia": "^1.4.22"
+		"@abacatepay/typebox": "^0.0.1",
+		"@abacatepay/types": "^2.0.1"
 	}
 }
