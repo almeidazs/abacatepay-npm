@@ -34,6 +34,10 @@ export const APIResponse = <Schema extends ZodTypeAny>(schema: Schema) =>
 		}),
 	]);
 
+export type APIResponse<Schema extends z.ZodTypeAny> = z.infer<
+	ReturnType<typeof APIResponse<Schema>>
+>;
+
 /**
  * Any response returned by the AbacatePay API that has a `pagination` field (Not cursor based)
  * @returns
@@ -63,6 +67,11 @@ export const APIResponseWithPagination = <Schema extends ZodTypeAny>(
 			}),
 		}),
 	]);
+
+export type APIResponseWithPagination<Schema extends z.ZodTypeAny> = z.infer<
+	ReturnType<typeof APIResponseWithPagination<Schema>>
+>;
+
 /**
  * Any response returned by the AbacatePay API that has a `pagination` field and is cursor-based
  */
@@ -97,6 +106,9 @@ export const APIResponseWithCursorBasedPagination = <Schema extends ZodTypeAny>(
 			}),
 		}),
 	]);
+
+export type APIResponseWithCursorBasedPagination<Schema extends z.ZodTypeAny> =
+	z.infer<ReturnType<typeof APIResponseWithCursorBasedPagination<Schema>>>;
 
 /**
  * https://api.abacatepay.com/v2/checkouts/create
