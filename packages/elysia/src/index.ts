@@ -1,11 +1,7 @@
-import {
-	WebhookBillingPaidEvent,
-	WebhookPayoutDoneEvent,
-	WebhookPayoutFailedEvent,
-} from '@abacatepay/typebox/v2';
+import { WebhookEvent } from '@abacatepay/typebox/v2';
 import { verifyWebhookSignature, WebhookEventType } from '@abacatepay/types/v2';
 import { Parse } from '@sinclair/typebox/value';
-import { type Context, t } from 'elysia';
+import type { Context } from 'elysia';
 import type { WebhookOptions } from './types';
 
 export { version } from './version';
@@ -16,10 +12,10 @@ export { version } from './version';
  */
 export const Webhooks = ({
 	onPayload,
-    onPayoutDone,
+	onPayoutDone,
 	onBillingPaid,
 	onPayoutFailed,
-	secret = process.env.ABACATEPAY_WEBHOOK_SECRET,
+	secret = process.env.ABACATEPAY_WEBHOOK_SECRET ?? process.env.ABACATE_PAY_WEBHOOK_SECRET,
 }: WebhookOptions) => {
 	if (!secret) throw new Error('Webhook secret is missing in the options');
 
@@ -34,14 +30,7 @@ export const Webhooks = ({
 
 		if (!verifyWebhookSignature(raw, signature)) return;
 
-		// TODO: Add this union type in @abacatepay/typebox/v2
-		const schema = t.Union([
-            WebhookPayoutDoneEvent,
-			WebhookBillingPaidEvent,
-			WebhookPayoutFailedEvent,
-		]);
-
-		const data = Parse(schema, context.body);
+		const data = Parse(WebhookEvent, context.body);
 
 		switch (data.event) {
 			case WebhookEventType.BillingPaid:
