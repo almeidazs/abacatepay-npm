@@ -1,0 +1,5 @@
+# Normalize line endings
+* text=auto eol=lf
+
+# Lockfiles (avoid noisy diffs)
+bun.lock -diff
