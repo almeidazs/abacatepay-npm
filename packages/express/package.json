@@ -49,6 +49,7 @@
 		"@abacatepay/zod": "^1.0.0"
 	},
 	"peerDependencies": {
+		"@types/express": "^5.0.6",
 		"express": "^5.2.1"
 	}
 }
