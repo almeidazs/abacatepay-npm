@@ -28,7 +28,7 @@
 	"keywords": [
 		"abacatepay",
 		"payments",
-		"hono",
+		"fastify",
 		"api",
 		"webhooks"
 	],
@@ -46,8 +46,7 @@
 	"type": "module",
 	"types": "./dist/index.d.ts",
 	"peerDependencies": {
-		"fastify": "^5.7.1",
-		"hono": "^4.11.4"
+		"fastify": "^5.7.1"
 	},
 	"dependencies": {
 		"@abacatepay/zod": "^1.0.0"

@@ -65,7 +65,6 @@
       },
       "peerDependencies": {
         "fastify": "^5.7.1",
-        "hono": "^4.11.4",
       },
     },
     "packages/hono": {
