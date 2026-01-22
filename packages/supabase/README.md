@@ -45,8 +45,6 @@ export const POST = Webhooks({
 
 <div align="center">
 
-O [`@abacatepay/supabase`](https://www.npmjs.com/package/@abacatepay/supabase) busca automáticamente por `ABACATEPAY_WEBHOOK_SECRET` ou `ABACATE_PAY_WEBHOOK_SECRET` nas variáveis de ambiente para usar caso o *secret* não seja fornecido.
-
 ## Segurança por padrão
 </div>
 
