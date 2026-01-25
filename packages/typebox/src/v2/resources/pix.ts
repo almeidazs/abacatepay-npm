@@ -36,4 +36,7 @@ export const APIQRCodePIX = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/transparents/reference
+ */
 export type APIQRCodePIX = Static<typeof APIQRCodePIX>;

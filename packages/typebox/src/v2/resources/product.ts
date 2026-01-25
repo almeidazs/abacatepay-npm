@@ -43,4 +43,7 @@ export const APIProduct = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/products/reference#estrutura
+ */
 export type APIProduct = Static<typeof APIProduct>;

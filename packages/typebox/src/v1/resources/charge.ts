@@ -27,6 +27,9 @@ export const PaymentFrequency = StringEnum(
 	'Payment frequency.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/payment/create#body-frequency
+ */
 export type PaymentFrequency = Static<typeof PaymentFrequency>;
 
 export const APIProduct = t.Object({
@@ -122,4 +125,7 @@ export const APICharge = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/payment/reference#estrutura
+ */
 export type APICharge = Static<typeof APICharge>;

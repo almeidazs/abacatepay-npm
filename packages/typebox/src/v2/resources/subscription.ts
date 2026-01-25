@@ -17,6 +17,9 @@ export const APISubscriptionEvent = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/subscriptions/reference#estrutura
+ */
 export type APISubscriptionEvent = Static<typeof APISubscriptionEvent>;
 
 export const SubscriptionStatus = StringEnum(
@@ -97,4 +100,7 @@ export const APISubscription = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/subscriptions/reference#estrutura
+ */
 export type APISubscription = Static<typeof APISubscription>;

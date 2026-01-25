@@ -9,13 +9,22 @@ export const CouponDiscountKind = StringEnum(
 	'Type of discount applied by the coupon.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/coupon/reference#atributos
+ */
 export type CouponDiscountKind = Static<typeof CouponDiscountKind>;
 
+/**
+ * https://docs.abacatepay.com/pages/coupon/reference#atributos
+ */
 export const CouponStatus = StringEnum(
 	['ACTIVE', 'DELETE', 'DISABLED'],
 	'Coupon status.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/coupon/reference#atributos
+ */
 export type CouponStatus = Static<typeof CouponStatus>;
 
 /**
@@ -61,4 +70,7 @@ export const APICoupon = t.Object({
 	),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/coupon/reference#estrutura
+ */
 export type APICoupon = Static<typeof APICoupon>;

@@ -9,6 +9,9 @@ export const WithdrawStatus = StringEnum(
 	'Transaction status.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/withdraw/reference#atributos
+ */
 export type WithdrawStatus = Static<typeof WithdrawStatus>;
 
 /**
@@ -49,4 +52,7 @@ export const APIWithdraw = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/withdraws/reference
+ */
 export type APIWithdraw = Static<typeof APIWithdraw>;

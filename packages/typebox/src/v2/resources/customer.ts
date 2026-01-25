@@ -37,4 +37,7 @@ export const APICustomer = t.Object({
 	),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/client/reference#estrutura
+ */
 export type APICustomer = Static<typeof APICustomer>;

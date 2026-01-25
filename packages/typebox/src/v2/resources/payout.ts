@@ -9,6 +9,9 @@ export const PayoutStatus = StringEnum(
 	'Transaction status.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/payouts/reference#atributos
+ */
 export type PayoutStatus = Static<typeof PayoutStatus>;
 
 /**
@@ -43,4 +46,7 @@ export const APIPayout = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/payouts/reference
+ */
 export type APIPayout = Static<typeof APIPayout>;

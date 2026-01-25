@@ -9,6 +9,9 @@ export const PaymentStatus = StringEnum(
 	'Billing status. Can be `PENDING`, `EXPIRED`, `CANCELLED`, `PAID`, `REFUNDED`.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/payment/reference#atributos
+ */
 export type PaymentStatus = Static<typeof PaymentStatus>;
 
 /**
@@ -16,6 +19,9 @@ export type PaymentStatus = Static<typeof PaymentStatus>;
  */
 export const PaymentMethod = StringEnum(['PIX', 'CARD'], 'Payment method.');
 
+/**
+ * https://docs.abacatepay.com/pages/payment/create#body-methods
+ */
 export type PaymentMethod = Static<typeof PaymentMethod>;
 
 /**
@@ -100,4 +106,7 @@ export const APICheckout = t.Object({
 	}),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/checkouts/reference#estrutura
+ */
 export type APICheckout = Static<typeof APICheckout>;

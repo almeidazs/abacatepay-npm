@@ -16,6 +16,9 @@ export const WebhookEventType = StringEnum(
 	'Webhook event type.',
 );
 
+/**
+ * https://docs.abacatepay.com/pages/webhooks
+ */
 export type WebhookEventType = Static<typeof WebhookEventType>;
 
 export const BaseWebhookEvent = <
@@ -61,6 +64,9 @@ export const WebhookWithdrawFailedEvent = BaseWebhookEvent(
 	}),
 );
 
+/**
+ * https://docs.abacatepay.com/pages/webhooks#withdraw-failed
+ */
 export type WebhookWithdrawFailedEvent = Static<
 	typeof WebhookWithdrawFailedEvent
 >;
@@ -87,6 +93,9 @@ export const WebhookWithdrawDoneEvent = BaseWebhookEvent(
 	}),
 );
 
+/**
+ * https://docs.abacatepay.com/pages/webhooks#withdraw-done
+ */
 export type WebhookWithdrawDoneEvent = Static<typeof WebhookWithdrawDoneEvent>;
 
 /**
@@ -169,6 +178,9 @@ export const WebhookBillingPaidEvent = BaseWebhookEvent(
 	}),
 );
 
+/**
+ * https://docs.abacatepay.com/pages/webhooks#billing-paid
+ */
 export type WebhookBillingPaidEvent = Static<typeof WebhookBillingPaidEvent>;
 
 /**
@@ -180,4 +192,7 @@ export const WebhookEvent = t.Union([
 	WebhookWithdrawFailedEvent,
 ]);
 
+/**
+ * https://docs.abacatepay.com/pages/webhooks
+ */
 export type WebhookEvent = Static<typeof WebhookEvent>;

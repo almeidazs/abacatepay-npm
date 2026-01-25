@@ -29,4 +29,7 @@ export const APIStore = t.Object({
 	),
 });
 
+/**
+ * https://docs.abacatepay.com/pages/store/reference#estrutura
+ */
 export type APIStore = Static<typeof APIStore>;
