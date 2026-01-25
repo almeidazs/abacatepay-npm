@@ -15,6 +15,9 @@
     "packages/adapters": {
       "name": "@abacatepay/adapters",
       "version": "1.0.0",
+      "dependencies": {
+        "@abacatepay/zod": "^1.0.0",
+      },
       "devDependencies": {
         "@biomejs/biome": "^2.3.11",
         "typescript": "^5.0.0",
@@ -819,6 +822,8 @@
     "yocto-queue": ["yocto-queue@0.1.0", "", {}, "sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q=="],
 
     "zod": ["zod@3.25.76", "", {}, "sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ=="],
+
+    "@abacatepay/adapters/@abacatepay/zod": ["@abacatepay/zod@1.0.0", "", { "peerDependencies": { "typescript": "^5", "zod": "^3" } }, "sha512-tp5LfIOdYUXDCA6rr6FqO7moMttLPPTAwxooAnvvEtv97dFlfAd6SmbX/aSu1EdqzYwN7nseHKspSIowGJg7Bw=="],
 
     "@abacatepay/adapters/@biomejs/biome": ["@biomejs/biome@2.3.12", "", { "optionalDependencies": { "@biomejs/cli-darwin-arm64": "2.3.12", "@biomejs/cli-darwin-x64": "2.3.12", "@biomejs/cli-linux-arm64": "2.3.12", "@biomejs/cli-linux-arm64-musl": "2.3.12", "@biomejs/cli-linux-x64": "2.3.12", "@biomejs/cli-linux-x64-musl": "2.3.12", "@biomejs/cli-win32-arm64": "2.3.12", "@biomejs/cli-win32-x64": "2.3.12" }, "bin": { "biome": "bin/biome" } }, "sha512-AR7h4aSlAvXj7TAajW/V12BOw2EiS0AqZWV5dGozf4nlLoUF/ifvD0+YgKSskT0ylA6dY1A8AwgP8kZ6yaCQnA=="],
 

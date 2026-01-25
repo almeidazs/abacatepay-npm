@@ -5,7 +5,7 @@
 		"type": "git",
 		"url": "https://github.com/almeidazs/ecosystem"
 	},
-	"main": "./dist/webhooks/index.js",
+	"main": "./dist/index.js",
 	"devDependencies": {
 		"@biomejs/biome": "^2.3.11",
 		"typescript": "^5.0.0"
@@ -47,5 +47,8 @@
 	},
 	"sideEffects": false,
 	"type": "module",
-	"types": "./dist/webhooks/index.d.ts"
+	"types": "./dist/index.d.ts",
+	"dependencies": {
+		"@abacatepay/zod": "^1.0.0"
+	}
 }
