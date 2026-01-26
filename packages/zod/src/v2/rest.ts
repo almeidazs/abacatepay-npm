@@ -1,4 +1,4 @@
-import { type ZodTypeAny, z } from 'zod';
+import { type _ZodType, z } from 'zod';
 import {
 	APICheckout,
 	APICoupon,
@@ -16,28 +16,26 @@ import {
 /**
  * Any response returned by the AbacatePay API
  */
-export const APIResponse = <Schema extends ZodTypeAny>(schema: Schema) =>
+export const APIResponse = <Schema extends _ZodType>(schema: Schema) =>
 	z.discriminatedUnion('success', [
 		z.object({
 			data: schema,
-			success: z.literal(true, {
-				description: 'Whether the request was successfull or not.',
-			}),
+			success: z
+				.literal([true])
+				.describe('Whether the request was successfull or not.'),
 		}),
 		z.object({
-			error: z.string({
-				description: 'Error message returned from the API.',
-			}),
-			success: z.literal(false, {
-				description: 'Whether the request was successfull or not.',
-			}),
+			error: z.string().describe('Error message returned from the API.'),
+			success: z
+				.literal([false])
+				.describe('Whether the request was successfull or not.'),
 		}),
 	]);
 
 /**
  * Any response returned by the AbacatePay API
  */
-export type APIResponse<Schema extends z.ZodTypeAny> = z.infer<
+export type APIResponse<Schema extends z._ZodType> = z.infer<
 	ReturnType<typeof APIResponse<Schema>>
 >;
 
@@ -45,29 +43,35 @@ export type APIResponse<Schema extends z.ZodTypeAny> = z.infer<
  * Any response returned by the AbacatePay API that has a `pagination` field (Not cursor based)
  * @returns
  */
-export const APIResponseWithPagination = <Schema extends ZodTypeAny>(
+export const APIResponseWithPagination = <Schema extends _ZodType>(
 	schema: Schema,
 ) =>
 	z.discriminatedUnion('success', [
 		z.object({
 			data: schema,
-			success: z.literal(true, {
-				description: 'Whether the request was successfull or not.',
-			}),
+			success: z
+				.literal([true])
+				.describe('Whether the request was successfull or not.'),
 			pagination: z.object({
 				page: z.number().int().min(1).describe('Current page.'),
-				limit: z.number().int().min(0).describe('Number of items per page.'),
+				limit: z
+					.number()
+					.int()
+					.min(0)
+					.describe('Number of items per page.'),
 				items: z.number().int().min(0).describe('Number of items.'),
-				totalPages: z.number().int().min(0).describe('Number of pages.'),
+				totalPages: z
+					.number()
+					.int()
+					.min(0)
+					.describe('Number of pages.'),
 			}),
 		}),
 		z.object({
-			error: z.string({
-				description: 'Error message returned from the API.',
-			}),
-			success: z.literal(false, {
-				description: 'Whether the request was successfull or not.',
-			}),
+			error: z.string().describe('Error message returned from the API.'),
+			success: z
+				.literal([false])
+				.describe('Whether the request was successfull or not.'),
 		}),
 	]);
 
@@ -75,24 +79,28 @@ export const APIResponseWithPagination = <Schema extends ZodTypeAny>(
  * Any response returned by the AbacatePay API that has a `pagination` field (Not cursor based)
  * @returns
  */
-export type APIResponseWithPagination<Schema extends z.ZodTypeAny> = z.infer<
+export type APIResponseWithPagination<Schema extends z._ZodType> = z.infer<
 	ReturnType<typeof APIResponseWithPagination<Schema>>
 >;
 
 /**
  * Any response returned by the AbacatePay API that has a `pagination` field and is cursor-based
  */
-export const APIResponseWithCursorBasedPagination = <Schema extends ZodTypeAny>(
+export const APIResponseWithCursorBasedPagination = <Schema extends _ZodType>(
 	schema: Schema,
 ) =>
 	z.discriminatedUnion('success', [
 		z.object({
 			data: schema,
-			success: z.literal(true, {
-				description: 'Whether the request was successfull or not.',
-			}),
+			success: z
+				.literal([true])
+				.describe('Whether the request was successfull or not.'),
 			pagination: z.object({
-				limit: z.number().int().min(0).describe('Number of items per page.'),
+				limit: z
+					.number()
+					.int()
+					.min(0)
+					.describe('Number of items per page.'),
 				hasNext: z
 					.boolean()
 					.describe('Indicates whether there is a next page.'),
@@ -105,19 +113,17 @@ export const APIResponseWithCursorBasedPagination = <Schema extends ZodTypeAny>(
 			}),
 		}),
 		z.object({
-			error: z.string({
-				description: 'Error message returned from the API.',
-			}),
-			success: z.literal(false, {
-				description: 'Whether the request was successfull or not.',
-			}),
+			error: z.string().describe('Error message returned from the API.'),
+			success: z
+				.literal([false])
+				.describe('Whether the request was successfull or not.'),
 		}),
 	]);
 
 /**
  * Any response returned by the AbacatePay API that has a `pagination` field and is cursor-based
  */
-export type APIResponseWithCursorBasedPagination<Schema extends z.ZodTypeAny> =
+export type APIResponseWithCursorBasedPagination<Schema extends z._ZodType> =
 	z.infer<ReturnType<typeof APIResponseWithCursorBasedPagination<Schema>>>;
 
 /**
