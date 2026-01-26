@@ -16,7 +16,7 @@ export const APIStore = z.object({
 				.number()
 				.int()
 				.describe('Balance pending confirmation in cents.'),
-			blocket: z
+			blocked: z
 				.number()
 				.int()
 				.describe('Balance blocked in disputes in cents.'),
