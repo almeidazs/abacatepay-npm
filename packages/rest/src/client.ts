@@ -107,6 +107,14 @@ export class REST {
 		attempt,
 		options,
 	}: InternalHandleTimeoutErrorOptions) {
+		if (attempt >= retry.max)
+			throw new HTTPError(
+				`${retry.max} attempts were performed, all failed`,
+				route,
+				0,
+				options.method,
+			);
+
 		if (retry.onRetry)
 			await retry.onRetry({
 				attempt,
