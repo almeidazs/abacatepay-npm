@@ -84,9 +84,21 @@ export interface RetryOptions {
 	onRetry?(context: RetryContext): unknown;
 }
 
+/**
+ * Context provided when a retry is made.
+ */
 export interface RetryContext {
+	/**
+	 * Current attempt number.
+	 */
 	attempt: number;
+	/**
+	 * Response received from the API, undefined if the error was a timeout.
+	 */
 	response?: Response;
+	/**
+	 * Options used in the request.
+	 */
 	options: MakeRequestOptions;
 }
 
@@ -102,6 +114,9 @@ export type HTTPMethodLike =
 	| 'DELETE'
 	| (string & {});
 
+/**
+ * @private
+ */
 export interface InternalHandleErrorOptions {
 	route: string;
 	attempt: number;
@@ -110,6 +125,9 @@ export interface InternalHandleErrorOptions {
 	options: MakeRequestOptions;
 }
 
+/**
+ * @private
+ */
 export type InternalHandleTimeoutErrorOptions = Omit<
 	InternalHandleErrorOptions,
 	'response'
