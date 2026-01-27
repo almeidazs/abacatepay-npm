@@ -8,6 +8,7 @@ import type {
 } from './types';
 import {
 	backoff,
+	isTimeoutError,
 	RATE_LIMIT_STATUS_CODE,
 	RETRYABLE_STATUS,
 	sleep,
@@ -93,10 +94,7 @@ export class REST {
 
 			return this.process<R>(response);
 		} catch (err) {
-			// biome-ignore lint/suspicious/noExplicitAny: Use any to check if the error is a timeout error.
-			const isTimeoutError = (err as any)?.name === 'TimeoutError';
-
-			if (isTimeoutError)
+			if (isTimeoutError(err))
 				return this.handleTimeout<R>({ retry, route, attempt, options });
 
 			throw new HTTPError(`${err}`, route, 0, '');

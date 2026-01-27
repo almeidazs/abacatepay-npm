@@ -34,3 +34,5 @@ export const backoff = (attempt: number) => {
 
 	return Math.floor(exp + jitter);
 };
+
+export const isTimeoutError = (err: unknown) => (err as { name?: string })?.name === 'TimeoutError';
