@@ -21,7 +21,6 @@ export interface APIProduct {
 	/**
 	 * Product currency.
 	 */
-	// TODO: Review this
 	currency: string;
 	/**
 	 * Product status
