@@ -68,7 +68,7 @@ export const APICheckout = z.object({
 			'URL that the customer will be redirected to when making payment.',
 		),
 	receiptUrl: z
-		.union([z.null(), z.string().url()])
+		.union([z.null(), z.url()])
 		.describe('Payment receipt URL.'),
 	coupons: z
 		.array(z.string())

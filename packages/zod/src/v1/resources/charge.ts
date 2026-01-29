@@ -61,9 +61,8 @@ export const APICharge = z.object({
 	frequency: PaymentFrequency,
 	externalId: z.nullable(z.string()).describe('Bill ID in your system.'),
 	url: z
-		.string()
-		.describe('URL where the user can complete the paymenz.')
-		.url(),
+		.url()
+		.describe('URL where the user can complete the paymenz.'),
 	status: PaymentStatus,
 	devMode: z
 		.boolean()
